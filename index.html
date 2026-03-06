@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday Palak</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Poppins",sans-serif;
+}
+
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ffe8ec,#fff7d6,#e8f6ff);
+overflow:hidden;
+}
+
+/* floating lights */
+
+.light{
+position:absolute;
+width:8px;
+height:8px;
+background:white;
+border-radius:50%;
+opacity:0.5;
+animation:float 12s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh)}
+100%{transform:translateY(-10vh)}
+}
+
+/* main card */
+
+.card{
+background:white;
+padding:50px;
+border-radius:25px;
+text-align:center;
+width:380px;
+box-shadow:0 25px 50px rgba(0,0,0,0.15);
+}
+
+/* title */
+
+h1{
+font-size:34px;
+margin-bottom:25px;
+background:linear-gradient(45deg,#ff7a9c,#ffb347);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+/* photo */
+
+.photo{
+width:170px;
+border-radius:50%;
+border:6px solid #ffe1e8;
+margin-bottom:20px;
+}
+
+/* message */
+
+#message{
+font-size:16px;
+color:#555;
+line-height:1.6;
+min-height:90px;
+}
+
+/* button */
+
+button{
+margin-top:25px;
+padding:12px 30px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#ff7a9c,#ffb347);
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.08);
+}
+
+/* confetti */
+
+.confetti{
+position:absolute;
+width:8px;
+height:8px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>Happy Birthday Palak 🎉</h1>
+
+<img src="palak.jpg" class="photo">
+
+<p id="message"></p>
+
+<button onclick="celebrate()">Celebrate 🎊</button>
+
+</div>
+
+<script>
+
+/* typing message */
+
+let text="Palak, you are truly an amazing friend. Your kindness and positivity make every day brighter. I hope this birthday brings you happiness, laughter, and many beautiful memories.";
+
+let i=0;
+
+function type(){
+if(i<text.length){
+document.getElementById("message").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,35);
+}
+}
+
+type();
+
+/* floating lights */
+
+for(let i=0;i<40;i++){
+
+let l=document.createElement("div");
+
+l.className="light";
+
+l.style.left=Math.random()*100+"vw";
+l.style.animationDuration=(8+Math.random()*10)+"s";
+
+document.body.appendChild(l);
+
+}
+
+/* confetti */
+
+function celebrate(){
+
+for(let i=0;i<100;i++){
+
+let c=document.createElement("div");
+
+c.className="confetti";
+
+c.style.left=Math.random()*100+"vw";
+c.style.top="0px";
+
+c.style.background="hsl("+Math.random()*360+",100%,60%)";
+
+document.body.appendChild(c);
+
+let fall=Math.random()*5+3;
+
+c.animate([
+{transform:"translateY(0)"},
+{transform:"translateY(100vh)"}
+],{
+duration:fall*1000
+});
+
+setTimeout(()=>c.remove(),fall*1000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
